@@ -7,8 +7,6 @@ spec:
   type: ClusterIP
   clusterIP: None
   ports:
-  {{- range $key, $value := .Values.service.ports }}
-    - name: {{ $key }}
-{{ toYaml $value | indent 6 }}
-  {{- end }}
+    - name: http
+      port: {{ .Values.httpPort }}
   selector: {{ include "common.labels.matchLabels" . | nindent 4 }}
